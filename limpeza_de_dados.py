@@ -6,13 +6,13 @@ pd.set_option('display.width', None)
 print(df.head())
 
 # remover dados
-df.drop('pais', axis=1, inplace=True)
-df.drop(2, axis=0, inplace=True)
+df.drop('pais', axis=1, inplace=True) #axis = 1 Coluna
+df.drop(2, axis=0, inplace=True)      #axis = 0 Linha
 
 # normalizar campos de texto
-df['nome'] = df['nome'].str.title()
-df['endereco'] = df['endereco'].str.lower()
-df['estado'] = df['estado'].str.strip().str.upper()
+df['nome'] = df['nome'].str.title() # primeira letra do nome maiusculo
+df['endereco'] = df['endereco'].str.lower() # tudo minusculo
+df['estado'] = df['estado'].str.strip().str.upper() # tudo maiusculo
 
 # converter tipos de dados
 df['idade'] = df['idade'].astype(int)
