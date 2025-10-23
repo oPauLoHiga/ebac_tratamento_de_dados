@@ -33,11 +33,19 @@ print("Outliers IQR: \n",outliers_iqr)
 # Filtrar outliers com IQR
 df_iqr = df[(df['idade'] >= limite_baixo) | (df['idade'] <= limite_alto)]
 
+limite_baixo = 1
+limite_alto = 100
+df = df[(df['idade'] >= limite_baixo) & (df['idade'] <= limite_alto)]
+
 # Filtrar endereços invalidos
 df['endereco'] = df['endereco'].apply(lambda x: 'Endereço inválido' if len(x.split('\n')) < 3 else x)
+print('Qtd registros com Endereço inválido:', (df['endereco'] == 'Endereço inválido').sum)
 
 # Tratar campos de texto
 df['nome'] = df['nome'].apply(lambda x: 'Nome invalido' if isinstance(x,str) and len(x) > 50 else x)
 print('Qtd registros com nomes grandes:', (df['nome'] == 'Nome invalido').sum)
 
 print('Dados com Outliers tratados:\n', df)
+
+# Salvar dataframe
+df.to_csv('clientes_remove_outliers.csv', index=False)
