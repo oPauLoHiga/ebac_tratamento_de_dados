@@ -1,0 +1,50 @@
+import pandas as pd
+
+# Carregar dados de um arquivo CSV
+df = pd.read_csv('dados.csv')
+
+# Visualizar os primeiros registros
+print(df.head())
+
+# Verificar a quantidade de linhas e colunas
+print(df.shape)
+
+# Verificar tipos de dados e valores nulos
+print(df.info())
+
+# Remover colunas desnecessárias
+df = df.drop(columns=['coluna_desnecessaria'])
+
+# Padronizar campos de texto
+df['nome'] = df['nome'].str.title()
+
+# Tratar valores nulos
+df['idade'] = df['idade'].fillna(df['idade'].mean())
+
+# Converter tipos de dados
+df['data'] = pd.to_datetime(df['data'])
+
+# Salvar o dataset limpo em um novo arquivo CSV
+df.to_csv('dados_limpos.csv', index=False)
+
+====================================================================================================================
+
+Vamos discutir o código passo-a-passo:
+
+pd.read_csv('dados.csv'): Carrega os dados de um arquivo CSV para um DataFrame do Pandas.
+
+df.head(): Visualiza os primeiros registros do DataFrame.
+
+df.shape: Verifica a quantidade de linhas e colunas no DataFrame.
+
+df.info(): Verifica os tipos de dados e a presença de valores nulos.
+
+df.drop(columns=['coluna_desnecessaria']): Remove colunas desnecessárias do DataFrame.
+
+df['nome'].str.title(): Padroniza os campos de texto para o formato título.
+
+df['idade'].fillna(df['idade'].mean()): Substitui valores nulos na coluna 'idade' pela média dos valores não nulos.
+
+pd.to_datetime(df['data']): Converte a coluna 'data' para o tipo datetime.
+
+df.to_csv('dados_limpos.csv', index=False): Salva o DataFrame limpo em um novo arquivo CSV
